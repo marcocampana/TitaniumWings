@@ -1,0 +1,2 @@
+var WingsComponents = {};
+WingsComponents.ui = {};
