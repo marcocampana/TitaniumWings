@@ -1,14 +1,29 @@
-WINGS_ROOT = 'vendor/titaniumwings';
+WINGS_ROOT = '/vendor/titaniumwings';
 
 Ti.include(WINGS_ROOT + '/wingsresource/wings_controller.js');
+Ti.include(WINGS_ROOT + '/wingscomponents/wings_components.js');
 
-// TODO extract this into a method and include models and lib files
-var resourcesDir = Titanium.Filesystem.getResourcesDirectory();
-var dir = Titanium.Filesystem.getFile(resourcesDir + '/app/controllers');
-var dir_files = dir.getDirectoryListing();
+requireFilesIn('/app/controllers/');
+requireFilesIn('/app/models/');
+requireFilesIn('/app/views/');
+requireFilesIn('/app/factories/');
+requireFilesIn('/lib/');
 
-for (var i=1;i<dir_files.length;i++){
-  if (dir_files[i].toString().match(/.*_controller\.js/)) {
-    Ti.include( 'app/controllers/' + dir_files[i]);
+function requireFilesIn(folder, pattern) {
+  var resourcesDir = Titanium.Filesystem.getResourcesDirectory();
+  var dir          = Titanium.Filesystem.getFile(resourcesDir + folder);
+  var dirFiles     = dir.getDirectoryListing();
+
+  if(dirFiles.length > 0) {
+
+    for (var i=0; i < dirFiles.length; i++){
+      if(pattern && (dirFiles[i].toString().match(pattern))) {
+        // TODO add recursive listing of folders
+        Ti.include(folder + dirFiles[i]);
+      } else {
+        Ti.include(folder + dirFiles[i]);
+      }
+    }
+
   }
 }
