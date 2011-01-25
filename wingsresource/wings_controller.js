@@ -2,28 +2,33 @@ var WingsController = {
   extend: function(klass, win){
 
     function loadAndRender() {
-      win.loadData({
+      klass.loadData({
         renderOnSuccess:function(data){
-          win.viewClass.render(win, data)
+          klass.viewClass.render(klass, win, data);
         }
       });
     }
 
-    win.openWindow = function(){
+    klass.openWindow = function(){
       loadAndRender();
-      win.open({animated:true});
+      win.open({animated:true, fullscreen:true});
     };
 
-    win.openInCurrentTab = function(w){
+    klass.openInCurrentTab = function(w){
       loadAndRender();
-      win.navGroupRootWindow.tab.open(w,{animated:true});
+      klass.navGroupRootWindow.tab.open(w,{animated:true, fullscreen:true});
     };
 
-    win.addEventListener('focus', function(e){
-      Ti.API.info('window is focused');
+    klass.renderWin = function(w) {
       loadAndRender();
-      win.open();
-    });
+      return win;
+    }
+
+    // win.addEventListener('focus', function(e){
+    //   Ti.API.info('window is focused');
+    //   loadAndRender();
+    //   win.open();
+    // });
 
     // win getter method
     klass.win = function(){ return win };
