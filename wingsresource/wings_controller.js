@@ -16,7 +16,7 @@ var WingsController = {
 
     klass.openInCurrentTab = function(w){
       loadAndRender();
-      klass.navGroupRootWindow.tab.open(w,{animated:true, fullscreen:true});
+      klass.navGroupRootWindow.tab.open(w,{animated:true});
     };
 
     klass.renderWin = function(w) {
