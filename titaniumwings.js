@@ -8,6 +8,7 @@ requireFilesIn('/app/models/');
 requireFilesIn('/app/views/');
 requireFilesIn('/app/factories/');
 requireFilesIn('/lib/');
+requireFilesIn('/init/');
 
 function requireFilesIn(folder, pattern) {
   var resourcesDir = Titanium.Filesystem.getResourcesDirectory();
@@ -17,13 +18,17 @@ function requireFilesIn(folder, pattern) {
   if(dirFiles.length > 0) {
 
     for (var i=0; i < dirFiles.length; i++){
-      if(pattern && (dirFiles[i].toString().match(pattern))) {
-        // TODO add recursive listing of folders
-        Ti.include(folder + dirFiles[i]);
-      } else {
-        Ti.include(folder + dirFiles[i]);
-      }
-    }
 
+      if(dirFiles[i].toString().match(/.*\.js$/)) {
+
+        if(pattern && (dirFiles[i].toString().match(pattern))) {
+          // TODO add recursive listing of folders
+          Ti.include(folder + dirFiles[i]);
+        } else {
+          Ti.include(folder + dirFiles[i]);
+        }
+      }
+
+    }
   }
 }
