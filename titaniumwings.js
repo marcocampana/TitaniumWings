@@ -3,10 +3,16 @@ WINGS_ROOT = '/vendor/titaniumwings';
 Ti.include(WINGS_ROOT + '/wingsresource/wings_controller.js');
 Ti.include(WINGS_ROOT + '/wingscomponents/wings_components.js');
 
+Ti.include('/config/application.js');
+if(WINGS_ENV) {
+  Ti.include('config/environments/' + WINGS_ENV + '.js');
+}
+
 requireFilesIn('/app/controllers/');
 requireFilesIn('/app/models/');
 requireFilesIn('/app/views/');
 requireFilesIn('/app/factories/');
+requireFilesIn('/app/helpers/');
 requireFilesIn('/lib/');
 requireFilesIn('/init/');
 
@@ -15,7 +21,7 @@ function requireFilesIn(folder, pattern) {
   var dir          = Titanium.Filesystem.getFile(resourcesDir + folder);
   var dirFiles     = dir.getDirectoryListing();
 
-  if(dirFiles.length > 0) {
+  if(dirFiles && dirFiles.length > 0) {
 
     for (var i=0; i < dirFiles.length; i++){
 
