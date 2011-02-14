@@ -49,7 +49,7 @@ WingsComponents.UI.ActivityIndicator = function() {
       color:'#fff',
       width:'auto',
       height:'auto',
-      font:{fontSize:18},
+      font:{fontSize:14},
       bottom:20
     });
     indWin.add(message);
