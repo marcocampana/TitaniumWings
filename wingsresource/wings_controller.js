@@ -1,36 +1,14 @@
 var WingsController = {
-  extend: function(klass, win){
+  init: function(klass, params) {
+    var win = Ti.UI.createWindow(params);
 
-    // function loadAndRender() {
-    //   klass.loadData({
-    //     renderOnSuccess:function(data){
-    //       klass.viewClass.render(klass, win, data);
-    //     }
-    //   });
-    // }
-    // 
-    // klass.openWindow = function(){
-    //   loadAndRender();
-    //   win.open({animated:true});
-    // };
-    // 
-    // klass.openInCurrentTab = function(w){
-    //   loadAndRender();
-    //   klass.navGroupRootWindow.tab.open(w,{animated:true});
-    // };
-    // 
-    // klass.renderWin = function(w) {
-    //   loadAndRender();
-    //   return win;
-    // }
+    klass.win = win;
 
-    // win.addEventListener('focus', function(e){
-    //   Ti.API.info('window is focused');
-    //   loadAndRender();
-    //   win.open();
-    // });
+    klass.render = function(params) {
+      // TODO check if viewClass is set and throw expection if it isn't
+      new klass.viewClass(klass, win).render(params);
+    }
 
-    // win getter method
-    klass.win = function(){ return win };
+    return win;
   }
 }
