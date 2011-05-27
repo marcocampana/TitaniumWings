@@ -1,4 +1,4 @@
 var WingsComponents = {};
 WingsComponents.UI = {};
 
-Ti.include(WINGS_ROOT + '/wingscomponents/lib/activity_indicator.js');
+Ti.include(Ti.WINGS_ROOT + '/wingscomponents/lib/activity_indicator.js');
