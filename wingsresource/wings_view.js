@@ -1,15 +1,18 @@
-var WingsView = {
-
-  init: function(klass, controller, win) {
-    klass.openInCurrentTab = function(controllerToOpen) {
-      if(controller.navGroupRootWindow) {
-        controllerToOpen.navGroupRootWindow = controller.navGroupRootWindow;
-        controller.navGroupRootWindow.tab.open(controllerToOpen.win);
-      } else {
-        controllerToOpen.navGroupRootWindow = controller.win;
-        controller.win.tab.open(controllerToOpen.win);
-      }
+(function() {
+  var WingsView;
+  WingsView = (function() {
+    function WingsView(controller) {
+      this.controller = controller;
     }
-  }
-
-}
+    WingsView.prototype.openInCurrentTab = function(controllerToOpen) {
+      if (this.controller.navGroupRootWindow) {
+        controllerToOpen.navGroupRootWindow = this.controller.navGroupRootWindow;
+        return controller.navGroupRootWindow.tab.open(this.controllerToOpen.win);
+      } else {
+        controllerToOpen.navGroupRootWindow = this.controller.win;
+        return this.controller.win.tab.open(controllerToOpen.win);
+      }
+    };
+    return WingsView;
+  })();
+}).call(this);
