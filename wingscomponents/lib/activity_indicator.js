@@ -6,7 +6,12 @@ WingsComponents.UI.ActivityIndicator = function() {
     if(Titanium.Platform.name === 'android') {
       showAndroidIndicator(message);
     } else {
-      showIOSIndicator(message);
+      if(indWin) {
+        hideIOSIndicator();
+        showIOSIndicator(message);
+      } else {
+        showIOSIndicator(message);
+      }
     }
   }
 
@@ -52,6 +57,7 @@ WingsComponents.UI.ActivityIndicator = function() {
       font:{fontSize:14},
       bottom:20
     });
+
     indWin.add(message);
     indWin.open();
     actInd.show();
@@ -59,7 +65,10 @@ WingsComponents.UI.ActivityIndicator = function() {
 
   function hideIOSIndicator() {
     actInd.hide();
-    indWin.close({opacity:0,duration:500});
+
+    Ti.API.info("=======closing window " + JSON.stringify(indWin));
+
+    indWin.close({opacity:0,duration:300});
    }
 
    function showAndroidIndicator(message) {
