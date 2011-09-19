@@ -55,7 +55,8 @@ WingsComponents.UI.ActivityIndicator = function() {
       width:'auto',
       height:'auto',
       font:{fontSize:14},
-      bottom:20
+      bottom:20,
+      textAlign:'center'
     });
 
     indWin.add(message);
@@ -65,9 +66,6 @@ WingsComponents.UI.ActivityIndicator = function() {
 
   function hideIOSIndicator() {
     actInd.hide();
-
-    Ti.API.info("=======closing window " + JSON.stringify(indWin));
-
     indWin.close({opacity:0,duration:300});
    }
 
